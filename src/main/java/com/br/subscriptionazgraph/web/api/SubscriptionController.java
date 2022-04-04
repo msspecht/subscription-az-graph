@@ -18,7 +18,7 @@ public class SubscriptionController {
     HookDeckFeign hookDeckFeign;
 
     @PostMapping
-    public ResponseEntity<?> responseSubscription(@RequestParam("validationToken") String validationToken, @RequestBody String body) {
+    public ResponseEntity<?> responseSubscription(@RequestParam("validationToken") String validationToken, @RequestBody(required = false) String body) {
         if(Objects.isNull(body))
             body = "Executou o endpoint";
         hookDeckFeign.createWebHook(URI.create("https://events.hookdeck.com/e/src_c3cD8mFCRldm8ein0YSMCCfO"), body);
